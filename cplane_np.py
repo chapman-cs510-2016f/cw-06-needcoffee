@@ -37,18 +37,16 @@ class ComplexPlane(abscplane.AbsComplexPlane):
         f    (func)  : function displayed in the plane
     """
     
-class ComplexPlaneNP(abscplane.AbsComplexPlane):
-    """
-        Args:
-        xmax (float) : maximum horizontal axis value
-        xmin (float) : minimum horizontal axis value
-        xlen (int)   : number of horizontal points
-        ymax (float) : maximum vertical axis value
-        ymin (float) : minimum vertical axis value
-        ylen (int)   : number of vertical points
-    """
-    
     def __init__(self, xmin, xmax, xlen, ymin, ymax, ylen):
+        """
+            Args:
+            xmax (float) : maximum horizontal axis value
+            xmin (float) : minimum horizontal axis value
+            xlen (int)   : number of horizontal points
+            ymax (float) : maximum vertical axis value
+            ymin (float) : minimum vertical axis value
+            ylen (int)   : number of vertical points
+        """
         self.xmin = xmin
         self.xmax = xmax
         self.xlen = xlen 

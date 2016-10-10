@@ -14,7 +14,7 @@ the horizontal axis and the vertical axis of the plane,
 respectively.
 """
 
-class ComplexPlane(abscplane.AbsComplexPlane):
+class ComplexPlaneNP(abscplane.AbsComplexPlane):
     """Create and manipulate a complex plane
     In addition to generating the 2D grid of numbers (x + y*1j),
     the class supports transformations of the plane with

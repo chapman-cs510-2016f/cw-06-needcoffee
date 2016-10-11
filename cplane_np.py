@@ -54,7 +54,6 @@ class ComplexPlaneNP(abscplane.AbsComplexPlane):
         self.ylen = ylen
         self.f = lambda x:x
         
-        #plane = []  #need this?
         self.refresh()
     
     def refresh(self):
@@ -63,12 +62,12 @@ class ComplexPlaneNP(abscplane.AbsComplexPlane):
         the point with the value self.f(x + y*1j). 
         """
         
-        real = np.linspace(self.xmin,self.xmax,self.xlen)
-        imaginary = np.linspace(self.ymin,self.ymax,self.ylen)
-        x, y= np.meshgrid(real,imaginary)
-        z = x+ y*1j
-        rl = np.linspace(self.xmin,self.xmax,self.xlen)
-        imag = np.linspace(self.ymin,self.ymax,self.ylen)
+        real = np.linspace(self.xmin,self.xmax,self.xlen)      #create real axis
+        imaginary = np.linspace(self.ymin,self.ymax,self.ylen) #create imaginary axis
+        x, y= np.meshgrid(real,imaginary)                      #create a 2D grid with each real component matched with every imginary component
+        z = x+ y*1j                                           #create complex numbers with real and imaginary parts
+        rl = np.linspace(self.xmin,self.xmax,self.xlen)       #labels (real components) for columns 
+        imag = np.linspace(self.ymin,self.ymax,self.ylen)    #labels (imaginary components) for rows
         self.plane = pd.DataFrame(self.f(z), index=imag, columns=rl)
         
     def zoom(self, xmin, xmax, xlen, ymin, ymax, ylen):
@@ -84,8 +83,15 @@ class ComplexPlaneNP(abscplane.AbsComplexPlane):
             ymin (float) : minimum vertical axis value
             ylen (int)   : number of vertical points
         """
+		
+        self.xmin = xmin
+        self.xmax = xmax
+        self.xlen = xlen 
+        self.ymin = ymin
+        self.ymax = ymax
+        self.ylen = ylen
 
-        self.refresh(xmin, xmax, xlen, ymin, ymax, ylen)
+        self.refresh()
 
     def set_f(self, function):
         """Reset the transformation function f.
@@ -96,7 +102,7 @@ class ComplexPlaneNP(abscplane.AbsComplexPlane):
                 points of complex plane.
         """
 
-        self.f = function
+        self.f = np.vectorize(function)
         self.refresh() #calls refresh to have function change take effect
         
     def __repr__(self):
@@ -111,15 +117,15 @@ def julia(c, max=100):
         n = 1
         mag = abs(z)
         if mag > 2:
-            return 1
-        while n <= max:
+            return 1  #return 1 if |z|>2 before transformation
+        while n <= max: #continue transformation until max is exceeded
             z = z**2 + c
             mag = abs(z)
             if mag > 2:
-                return n
+                return n #return number of transformations before |z|>2
             else:
                 n += 1
-        return 0
+        return 0  #return 0 if max is reached before |z|>2
     return f
 
 
@@ -129,6 +135,6 @@ def test_julia():
     assert f(-1.01 - 0.2j) == 20
     assert f(-1.02 - 0.2j) == 13
     assert f(-1.03 - 0.2j) == 10
-    print (f)
+    assert f(5j) == 1
 
 test_julia()

@@ -105,7 +105,7 @@ class ComplexPlaneNP(abscplane.AbsComplexPlane):
         of complex numbers
         """
 
-        return str(self.plane)
+        return self.plane.to_string()
 
 def julia(c, max=100):
     def f(z):

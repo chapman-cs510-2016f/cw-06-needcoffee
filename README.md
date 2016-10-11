@@ -32,7 +32,7 @@ Complete the following exercises, saving your solutions in the indicated files. 
 
 Analyze in this section what you found useful about this assignment in your own words. Include any lingering questions or comments that you may have.
 
-**CHANGEME**
+**Using numpy is fantastic. Vectorization simplifies so many tasks, especially math-related ones. Pandas is also nice; I really like using data frames in particular, though when the labels aren't essential, I'd prefer to use a numpy array.**
 
 ## Honor Pledge
 

@@ -25,7 +25,6 @@ class ComplexPlaneNP(abscplane.AbsComplexPlane):
     self.ymax with self.ylen total points. By default, the function
     f is the identity function lamdax:x, which does nothing to
     the bare complex plane.
-
     Attributes:
         xmax (float) : maximum horizontal axis value
         xmin (float) : minimum horizontal axis value
@@ -125,8 +124,8 @@ def julia(c, max=100):
 
 
 def test_julia():
-    f = julia( -1.037 + 0.17j ) # c=-1.037 + 0.17j
-    assert f(-1.00 - 0.2j) == 0 # z=-1.00 - 0.2j
+    f = julia( -1.037 + 0.17j )  # c=-1.037 + 0.17j
+    assert f(-1.00 - 0.2j) == 0  # z=-1.00 - 0.2j
     assert f(-1.01 - 0.2j) == 20
     assert f(-1.02 - 0.2j) == 13
     assert f(-1.03 - 0.2j) == 10
